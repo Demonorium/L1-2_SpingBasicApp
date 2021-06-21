@@ -1,11 +1,13 @@
 package lesson;
 
 import lesson.services.BeanWithDependency;
+import lesson.services.EmailService;
 import lesson.services.GreetingService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Starter {
@@ -26,5 +28,12 @@ public class Starter {
 
         logger.info(greetingService.sayGreeting());  // "Greeting, user!"
         logger.info(withDependency.sayGreeting());
+
+
+        EmailService mail = context.getBean(EmailService.class);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("TEST");
+        mail.setBlackList(list);
+        mail.sendEmail("TEST", "hello world");
     }
 }

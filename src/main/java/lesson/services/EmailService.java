@@ -1,10 +1,13 @@
 package lesson.services;
 
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class EmailService implements ApplicationEventPublisherAware {
 
     private List<String> blackList;
@@ -14,6 +17,7 @@ public class EmailService implements ApplicationEventPublisherAware {
         this.blackList = blackList;
     }
 
+    @Required
     public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
         this.publisher = publisher;
     }
